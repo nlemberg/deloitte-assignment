@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const axios = require("axios");
+const url = "http://localhost:5000";
 
 const connectDB = async () => {
   try {
@@ -13,4 +15,23 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+const populateDB = async () => {
+  let { data: employees } = await axios.get(`${url}/api/employees`);
+  if (employees.length === 0) {
+    const { data: response } = await axios.get("https://dummyjson.com/users");
+    employees = response.users.map(async (user) => {
+      const employee = {
+        name: user.firstName + " " + user.lastName,
+        workTitle: user.company.title,
+        imageUrl: user.image,
+      };
+      try {
+        await axios.post(`${url}/api/employees`, employee);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
+};
+
+module.exports = { connectDB, populateDB };
