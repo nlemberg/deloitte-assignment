@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const db = require("./config/db");
 
 const port = process.env.PORT || 5000;
@@ -9,6 +10,7 @@ db.populateDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use("/api/employees", require("./routes/employeeRoutes"));
 

@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", Verdana, Helvetica, sans-serif;
+  color: #fff;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    no-repeat center/85% url("./assets/background.jpg"), black;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: transparent;
+}
+
+.logo {
+  width: 182px;
+  height: 34px;
+}
+
+input {
+  width: 40%;
+  height: 2rem;
+  border-radius: 20px;
+}
