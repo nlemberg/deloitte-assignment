@@ -6,6 +6,7 @@ const url = "http://localhost:5000/api/employees";
 
 const initialState = {
   employees: [],
+  results: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -21,11 +22,20 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function setResults(data) {
+    dispatch({
+      type: "SET_RESULTS",
+      payload: data,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         employees: state.employees,
+        results: state.results,
         getEmployees,
+        setResults,
       }}
     >
       {children}
