@@ -27,4 +27,4 @@ if (process.env.NODE_ENV === "production" || "prod") {
   app.get("/", (req, res) => res.send("Not in production"));
 }
 
-app.listen(PORT, () => console.log(`Server running on port ${port}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
