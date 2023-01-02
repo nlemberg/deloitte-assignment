@@ -16,17 +16,17 @@ app.use(cors());
 
 app.use("/api/employees", require("./routes/employeeRoutes"));
 
-// if (process.env.NODE_ENV === "production" || "prod") {
-//   app.use(express.static(path.join(__dirname, "../frontend/build")));
+if (process.env.NODE_ENV === "production" || "prod") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-//   app.get("*", (req, res) =>
-//     res.sendFile(
-//       path.resolve(__dirname, "../", "frontend", "build", "index.html")
-//     )
-//   );
-// } else {
-//   app.get("/", (req, res) => res.send("Not in production"));
-// }
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Not in production"));
+}
 
 // app.listen(port, () => console.log(`Server running on port ${port}`));
 // app.listen(process.env.PORT || 3000);
