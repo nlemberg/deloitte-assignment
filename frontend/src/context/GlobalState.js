@@ -6,7 +6,8 @@ const url = "http://localhost:5000/api/employees";
 
 const initialState = {
   employees: [],
-  results: [],
+  quick: true,
+  searchStr: "",
 };
 
 export const GlobalContext = createContext(initialState);
@@ -14,18 +15,33 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  async function getEmployees() {
-    const { data: employees } = await axios.get(url);
+  async function searchEmployees(searchStr) {
+    const { data: employees } = await axios.get(`${url}/${searchStr}`);
     dispatch({
-      type: "GET_ALL",
+      type: "FULL_SEARCH",
       payload: employees,
     });
   }
 
-  function setResults(data) {
+  async function quickSearch(searchStr) {
+    const { data: employees } = await axios.get(`${url}/3/${searchStr}`);
     dispatch({
-      type: "SET_RESULTS",
-      payload: data,
+      type: "QUICK_SEARCH",
+      payload: employees,
+    });
+  }
+
+  function clearSearch() {
+    dispatch({
+      type: "QUICK_SEARCH",
+      payload: [],
+    });
+  }
+
+  function setSearchStr(str) {
+    dispatch({
+      type: "SEARCH_STR",
+      payload: str,
     });
   }
 
@@ -33,9 +49,12 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         employees: state.employees,
-        results: state.results,
-        getEmployees,
-        setResults,
+        quick: state.quick,
+        searchStr: state.searchStr,
+        searchEmployees,
+        quickSearch,
+        clearSearch,
+        setSearchStr,
       }}
     >
       {children}

@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
-const Employee = ({ employee }) => {
+const Employee = () => {
+  const { employees } = useContext(GlobalContext);
+
   return (
-    <li key={employee._id}>
-      <img src={employee.imageUrl} alt={employee.name} />
-      <span>
-        {employee.name}, {employee.workTitle}
-      </span>
-    </li>
+    <ul>
+      {employees.length > 0
+        ? employees.map((employee) => (
+            <li key={employee._id}>
+              <img src={employee.imageUrl} alt={employee.name} />
+              <h4>{employee.name}</h4>
+              <p>{employee.workTitle}</p>
+            </li>
+          ))
+        : null}
+    </ul>
   );
 };
 

@@ -1,41 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
-import Employee from "./Employee";
 
 const Search = () => {
-  const { employees, setResults } = useContext(GlobalContext);
+  const context = useRef(useContext(GlobalContext));
   const [searchTerm, setSearchTerm] = useState("");
-  //   const [searchResults, setSearchResults] = useState([]);
-  const [isHidden, setIsHidden] = useState(true);
 
-  let results = [];
+  useEffect(() => {
+    if (searchTerm.length > 1) {
+      context.current.quickSearch(searchTerm);
+      context.current.setSearchStr(searchTerm);
+    } else {
+      context.current.clearSearch();
+      context.current.setSearchStr("");
+    }
+  }, [context, searchTerm]);
 
-  if (searchTerm.length > 1) {
-    results = employees.filter(
-      (employee) =>
-        employee.name.toLowerCase().includes(searchTerm) ||
-        employee.workTitle.toLowerCase().includes(searchTerm)
-    );
-    // .map((employee) => {
-    //   return <Employee key={employee._id} employee={employee} />;
-    // return (
-    //   <li key={employee._id}>
-    //     {employee.name}, {employee.workTitle}
-    //   </li>
-    // );
-  }
-  // }
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (searchTerm.length < 2) {
       alert("Search string must be longer than one character");
     } else {
-      setResults(results);
-      //   setSearchResults(results);
-      setIsHidden(false);
-      setSearchTerm("");
+      await context.current.searchEmployees(searchTerm);
     }
   };
 
@@ -46,20 +31,11 @@ const Search = () => {
           type="text"
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            setIsHidden(true);
           }}
           placeholder="Search..."
         ></input>
         <button type="submit">submit</button>
-        <ul style={{ display: isHidden ? "block" : "none" }}>
-          {results.map((employee) => (
-            <Employee key={employee._id} employee={employee} />
-          ))}
-        </ul>
       </form>
-      <div style={{ display: isHidden ? "none" : "block" }}>
-        {/* {searchResults} */}
-      </div>
     </div>
   );
 };

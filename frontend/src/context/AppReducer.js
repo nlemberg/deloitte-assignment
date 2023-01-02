@@ -1,14 +1,21 @@
 const AppReducer = (state, action) => {
   switch (action.type) {
-    case "GET_ALL":
+    case "FULL_SEARCH":
       return {
         ...state,
         employees: action.payload,
+        quick: false,
       };
-    case "SET_RESULTS":
+    case "QUICK_SEARCH":
       return {
         ...state,
-        results: action.payload,
+        employees: action.payload,
+        quick: true,
+      };
+    case "SEARCH_STR":
+      return {
+        ...state,
+        searchStr: action.payload,
       };
     default:
       return state;
