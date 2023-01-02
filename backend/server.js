@@ -5,8 +5,8 @@ const db = require("./config/db");
 
 // const port = process.env.PORT || 5000;
 
-db.connectDB();
-db.populateDB();
+// db.connectDB();
+// db.populateDB();
 
 const app = express();
 app.use(express.json());
@@ -28,4 +28,12 @@ app.use("/api/employees", require("./routes/employeeRoutes"));
 // }
 
 // app.listen(port, () => console.log(`Server running on port ${port}`));
-app.listen(process.env.PORT || 3000);
+// app.listen(process.env.PORT || 3000);
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("listening for requests");
+  });
+});
+
+db.populateDB();
