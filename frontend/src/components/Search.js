@@ -25,18 +25,18 @@ const Search = () => {
   };
 
   return (
-    <div className="column">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-          placeholder="Search..."
-        ></input>
-        <button type="submit">submit</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
+        placeholder="Search..."
+      ></input>
+      <button type="submit">
+        <i className="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
   );
 };
 

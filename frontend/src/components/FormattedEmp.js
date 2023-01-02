@@ -26,13 +26,15 @@ const FormattedEmp = () => {
   };
 
   return (
-    <ul>
+    <ul className="suggestions">
       {employees.length > 0
         ? employees.map((employee) => (
             <li key={employee._id}>
               <img src={employee.imageUrl} alt={employee.name} />
-              <h4>{getHighlight(employee.name)}</h4>
-              <p>{getHighlight(employee.workTitle)}</p>
+              <div className="li-text">
+                <h4>{getHighlight(employee.name)}</h4>
+                <p>{getHighlight(employee.workTitle)}</p>
+              </div>
             </li>
           ))
         : null}

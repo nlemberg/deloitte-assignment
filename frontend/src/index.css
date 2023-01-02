@@ -9,7 +9,8 @@ body {
   color: #fff;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    no-repeat center/85% url("./assets/background.jpg"), black;
+    no-repeat url("./assets/background.jpg"), black;
+  background-size: cover;
 }
 
 header {
@@ -24,17 +25,43 @@ header {
   height: 34px;
 }
 
-.column {
+.wrapper {
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  min-width: 50vw;
+}
+
 h1 {
+  font-size: 3rem;
   text-transform: uppercase;
+  text-align: center;
   color: #2fadad;
-  margin: 30px;
+  margin: 5px;
+  margin-top: 5rem;
+}
+
+h4 {
+  color: #722336;
+}
+
+.subtitle {
+  margin: 1rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input {
@@ -42,12 +69,21 @@ input {
   height: 2rem;
   border-radius: 20px;
   border: none;
-  margin-right: 20px;
+  margin-right: 10px;
+  padding-left: 10px;
+  box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
-img {
-  max-height: 30px;
+input:focus {
+  outline: none;
+}
+
+img:not(.logo) {
+  max-height: 40px;
   margin-right: 10px;
+  border-radius: 50px;
+  border: 1px solid #bbbab6;
+  background-color: #fff;
 }
 
 ul {
@@ -55,11 +91,64 @@ ul {
   width: 40vw;
 }
 
+.results {
+  overflow-y: scroll;
+  max-height: 50vh;
+  width: 60vw;
+}
+
+.results-outer {
+  max-height: 50vh;
+  margin-top: 2rem;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
 li {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  padding-left: 1rem;
   background-color: #d9d9d9;
   color: black;
 }
 
+.suggestions li:first-child {
+  margin-top: -1rem;
+  padding-top: 1rem;
+  height: 5rem;
+  background-color: #f2f2f2;
+  z-index: -10;
+}
+.suggestions li {
+  border-top: 1px solid white;
+}
+
+.results li:first-child {
+  border-radius: 24px 0 0 0;
+}
+
+li:last-child {
+  border-radius: 0 0 0 24px;
+}
+.suggestions li:last-child {
+  border-radius: 0 0 24px 24px;
+}
+
+.li-text {
+  flex-direction: column;
+}
+
 b {
   background-color: yellow;
+}
+
+button {
+  cursor: pointer;
+  height: 2.4rem;
+  width: 2.4rem;
+  color: white;
+  font-size: x-large;
+  background-color: #2fadad;
+  border-radius: 50px;
 }

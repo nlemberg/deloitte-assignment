@@ -8,10 +8,15 @@ const Main = () => {
   const { quick } = useContext(GlobalContext);
 
   return (
-    <div className="column">
-      <h1>Looking for an employee?</h1>
-      <Search />
-      {quick ? <FormattedEmp /> : <Employee />}
+    <div className="wrapper">
+      <div className="column">
+        <h1>Looking for an employee?</h1>
+        <p className="subtitle">Start typing to get suggestions</p>
+        <div>
+          <Search />
+          {quick ? <FormattedEmp /> : <Employee />}
+        </div>
+      </div>
     </div>
   );
 };
