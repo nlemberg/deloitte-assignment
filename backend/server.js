@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const db = require("./config/db");
@@ -13,5 +14,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/api/employees", require("./routes/employeeRoutes"));
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Not in production"));
+}
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
