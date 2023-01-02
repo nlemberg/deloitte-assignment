@@ -31,7 +31,7 @@ app.use("/api/employees", require("./routes/employeeRoutes"));
 // app.listen(port, () => console.log(`Server running on port ${port}`));
 // app.listen(process.env.PORT || 3000);
 
-connectDB().then(() => {
+db.connectDB().then(() => {
   app.listen(PORT, () => {
     console.log("listening for requests");
   });
