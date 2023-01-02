@@ -3,7 +3,7 @@ import AppReducer from "./AppReducer";
 import axios from "axios";
 
 const url =
-  "https://busy-puce-gopher-wrap.cyclic.app/api/employees" ||
+  "https://deloitte-assignment.onrender.com/api/employees" ||
   "http://localhost:5000/api/employees";
 
 const initialState = {

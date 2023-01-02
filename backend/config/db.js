@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const axios = require("axios");
 const url =
-  "https://busy-puce-gopher-wrap.cyclic.app/" || "http://localhost:5000";
+  "https://deloitte-assignment.onrender.com" || "http://localhost:5000";
 
 const connectDB = async () => {
   try {
