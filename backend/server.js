@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use("/api/employees", require("./routes/employeeRoutes"));
 
-// if (process.env.NODE_ENV === "production") {
+// if (process.env.NODE_ENV === "production" || "prod") {
 //   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 //   app.get("*", (req, res) =>
