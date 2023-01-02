@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const axios = require("axios");
-const url = "http://localhost:5000";
+const url =
+  "https://deloitte-assignment.onrender.com" || "http://localhost:5000";
 
 const connectDB = async () => {
   try {
