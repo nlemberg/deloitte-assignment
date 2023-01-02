@@ -2,7 +2,9 @@ import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
 
-const url = "http://localhost:5000/api/employees";
+const url =
+  "https://busy-puce-gopher-wrap.cyclic.app/api/employees" ||
+  "http://localhost:5000/api/employees";
 
 const initialState = {
   employees: [],
