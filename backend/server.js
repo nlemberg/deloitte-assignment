@@ -4,6 +4,7 @@ const cors = require("cors");
 const db = require("./config/db");
 
 // const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || require("./config/keys").PORT || 3000;
 
 // db.connectDB();
 // db.populateDB();
